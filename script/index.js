@@ -1,3 +1,8 @@
+const createElements = (arr)=>{
+    //console.log(arr);
+    const htmlElements = arr.map((el) => `<span class="btn">${el}</span>`);
+    return(htmlElements.join(" "));
+};
 
 const loadLessons = () => {
     fetch("https://openapi.programming-hero.com/api/levels/all")
@@ -36,7 +41,29 @@ const loadWordDetail = async(id) =>{
 const displayWordDetails = (word) =>{
     console.log(word);
     const detailsBox = document.getElementById("details-container");
-    //detailsBox.innerHTML = "Hi";
+    detailsBox.innerHTML = `
+    <div class="">
+        <h2 class="text-2xl font-bold ">${word.word} (<i class="fa-solid fa-microphone-lines"></i> : ${word.pronunciation})</h2>
+
+      </div>
+
+      <div class="">
+        <h2 class="font-bold ">${word.meaning}</h2>
+         <p>আগ্রহী</p>
+      </div>
+
+      <div class="">
+        <h2 class="font-bold ">Example</h2>
+         <p>${word.sentence}</p>
+      </div>
+
+      <div class="">${createElements(word.synonyms)}</div>
+         
+      </div>
+    
+    
+    
+    `;
 
     document.getElementById("word_modal").showModal();
     
